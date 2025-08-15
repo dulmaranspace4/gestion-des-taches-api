@@ -17,7 +17,7 @@
     "nodemon": "^2.0.22"
   },
   "author": "Votre Nom",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/votre-utilisateur/gestion-des-taches-api.git"
