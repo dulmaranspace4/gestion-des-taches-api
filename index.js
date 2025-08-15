@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
 
-// Connexion à MongoDB
+// Connexion à MongoDB avec des options pour le parser et la topologie unifiée
 mongoose.connect('mongodb://localhost:27017/gestion-taches', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB connecté !'))
 .catch(err => console.log('Erreur de connexion MongoDB :', err));
