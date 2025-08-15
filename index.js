@@ -11,7 +11,10 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Connexion à MongoDB avec des options pour le parser et la topologie unifiée
-mongoose.connect('mongodb://localhost:27017/gestion-taches', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/gestion-taches', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 .then(() => console.log('MongoDB connecté !'))
 .catch(err => console.log('Erreur de connexion MongoDB :', err));
 
@@ -21,8 +24,9 @@ app.use((err, req, res, next) => {
     res.status(500).send('Erreur interne du serveur'); // Updated error message for clarity
 });
 
-// Routes
+// Importation des routes des tâches
 const tasksRouter = require('./routes/tasks');
+// Utilisation des routes des tâches
 app.use('/api/tasks', tasksRouter);
 
 // Documentation Swagger
