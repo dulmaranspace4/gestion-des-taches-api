@@ -1,0 +1,52 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API pour la gestion des tâches",
+    "version": "1.0.0",
+    "title": "Gestion des Tâches API"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/tasks": {
+      "post": {
+        "summary": "Créer une tâche",
+        "parameters": [{"name": "task", "in": "body", "required": true, "schema": {"$ref": "#/definitions/Task"}},],
+        "responses": {"201": {"description": "Tâche créée"}}
+      },
+      "get": {
+        "summary": "Lire toutes les tâches",
+        "responses": {"200": {"description": "Liste des tâches"}}
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "summary": "Lire une tâche par ID",
+        "parameters": [{"name": "id", "in": "path", "required": true}],
+        "responses": {"200": {"description": "Détails de la tâche"}, "404": {"description": "Tâche non trouvée"}}
+      },
+      "patch": {
+        "summary": "Mettre à jour une tâche",
+        "parameters": [{"name": "id", "in": "path", "required": true}, {"name": "task", "in": "body", "required": true, "schema": {"$ref": "#/definitions/Task"}}],
+        "responses": {"200": {"description": "Tâche mise à jour"}, "404": {"description": "Tâche non trouvée"}}
+      },
+      "delete": {
+        "summary": "Supprimer une tâche",
+        "parameters": [{"name": "id", "in": "path", "required": true}],
+        "responses": {"200": {"description": "Tâche supprimée"}, "404": {"description": "Tâche non trouvée"}}
+      }
+    }
+  },
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "description": {"type": "string"},
+        "completed": {"type": "boolean"},
+        "createdAt": {"type": "string", "format": "date-time"}
+      },
+      "required": ["title", "description"]
+    }
+  }
+}
