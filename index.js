@@ -7,7 +7,7 @@ const swaggerDocument = require('./swagger.json');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middleware to parse JSON requests
 app.use(bodyParser.json());
 
 // Connexion à MongoDB
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/gestion-taches', { useNewUrlParser: 
 .then(() => console.log('MongoDB connecté !'))
 .catch(err => console.log('Erreur de connexion MongoDB :', err));
 
-// Error handling middleware
+// Middleware pour la gestion des erreurs
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
@@ -28,6 +28,7 @@ app.use('/api/tasks', tasksRouter);
 // Documentation Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// Démarrage du serveur
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
