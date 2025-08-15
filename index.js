@@ -15,6 +15,12 @@ mongoose.connect('mongodb://localhost:27017/gestion-taches', { useNewUrlParser: 
 .then(() => console.log('MongoDB connecté !'))
 .catch(err => console.log('Erreur de connexion MongoDB :', err));
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
 // Routes
 const tasksRouter = require('./routes/tasks');
 app.use('/api/tasks', tasksRouter);
