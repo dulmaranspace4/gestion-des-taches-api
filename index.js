@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/gestion-taches', { useNewUrlParser: 
 // Middleware pour la gestion des erreurs
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('Something broke!');
+    res.status(500).send('Erreur interne du serveur'); // Updated error message for clarity
 });
 
 // Routes
